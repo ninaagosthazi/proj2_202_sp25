@@ -170,3 +170,124 @@ Push the following files to your GitHub Classroom repo:
 - `sample.csv` – a small file for testing (optional but recommended)
 
 ---
+
+
+## 📎 Appendix: Working with CSV Files in Python
+
+### 🔢 What’s a CSV File?
+
+A **CSV file** ("Comma-Separated Values") is a simple text file where:
+
+- Each **line** is one row in a table  
+- Each **value** in a line is separated by a comma (`,`)  
+- The **first line** usually contains **column names**
+
+#### 📦 Example
+
+A CSV for a magic shop's inventory might look like:
+
+```csv
+item,price,number in stock
+cauldron,47000,16
+broom,7899,10
+wand,1426,150
+```
+
+This means:
+- The price of a broom is $78.99  
+- There are 10 brooms in stock  
+- Each row represents one item
+
+---
+
+### 🧠 Reading CSV Files in Python
+
+Python has a built-in `csv` module that makes reading CSVs easy.  
+The `csv.reader` class acts as an **iterator**, giving you one row at a time as a list of strings.
+
+#### 🧪 Example
+
+```python
+import csv
+
+def total_item_count(filename: str) -> int:
+    with open(filename, newline="") as csvfile:
+        iter = csv.reader(csvfile)
+        topline = next(iter)
+        if not (topline == expected_labels):
+            raise ValueError("unexpected first line: got: {}".format(topline))
+        item_count = 0
+        for line in iter:
+            item_count = item_count + float(line[2])
+        return item_count
+```
+
+---
+
+### 🧰 Code Explanation
+
+#### 4.1 `with`
+The `with` block **automatically closes** the file after you're done — this is safer and cleaner than using `open()` without it.
+
+#### 4.2 `iter`
+The CSV reader is an **iterator**. That means:
+- It returns the next line every time you loop over it
+- You don’t get all lines at once — just one at a time
+- This works great with `for line in iter: ...`
+
+In this assignment, you’ll use this to **build a linked list**, where each row becomes a node.
+
+> ⚠️ Your list might come out "backward" (most recent row first). That’s fine!
+
+#### 4.3 `raise`
+If the CSV is missing its header or in the wrong format, we use `raise ValueError(...)` to halt the program and print a helpful message.
+
+#### 4.4 `format`
+Python lets you insert values into strings:
+
+```python
+print("Adding {} and {} gives {}".format(3, 4, 7))
+```
+
+This prints: `Adding 3 and 4 gives 7`.
+
+---
+
+### 🌍 About Your Input Data
+
+We’ve extracted a subset of real climate data from **Our World in Data**.
+
+This dataset contains:
+- Greenhouse gas emissions by country
+- Year-by-year data from 1990 to 2020
+- Three sectors:  
+  - `"electricity and heat"`  
+  - `"energy"`  
+  - `"total CO2 excluding LUCF"` (Land Use Change and Forestry)
+
+Each sector has:
+- **Total emissions**
+- **Per-capita emissions**
+
+#### ⚠️ Missing data
+Some rows are incomplete! For example:
+
+```csv
+Andorra,2010,,,,,,,
+```
+
+If a value is missing, the CSV line will just have empty fields (like `,,,,`), which appear as empty strings (`""`). You must convert these to `None`.
+
+---
+
+### 🔍 What You’ll Do
+
+- Read each line from the CSV  
+- Parse it into a `Row` object  
+- Chain the rows together using your custom linked list  
+- Write functions to:
+  - Filter by country or year
+  - Compare per-capita values
+  - Estimate population or compute growth
+
+This assignment models how real-world **data pipelines** work — loading, validating, filtering, and analyzing large, messy datasets using linked structures and clean recursive logic.
