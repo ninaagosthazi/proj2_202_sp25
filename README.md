@@ -35,7 +35,7 @@ You will be building a custom linked list of **rows** representing individual re
 ### 🧩 Create the following:
 
 - A `Row` class to store one line of emissions data  
-- A linked list class
+- A linked list class where each node contains a Row object
 
 Each row of the CSV file includes the following fields:
 
