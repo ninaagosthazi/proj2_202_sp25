@@ -53,5 +53,25 @@ def parse_row(fields: list[str]) -> Row:
                total_co2_emissions_excluding_lucf_per_capita = string_to_float(fields[7]))
 
 def build_linked_list(rows: list[list[str]], index: int) -> Node | None:
-    
+    """
+    Purpose: A helper function that recursively builds a linked list from a list of CSV rows.
+    """
+    if index >= len(rows):
+        return None
+    return Node(parse_row(rows[index]), build_linked_list(rows, index + 1))
 
+def read_csv_lines(filename: str) -> Node | None:
+    """
+    Purpose: A function that reads a CSV file, validates its header, converts each row into a Row,
+    and recursively builds a linked list of Node objects.
+    """
+    with open(filename, "r", newline="") as csvfile:
+        reader = csv.reader(csvfile)
+        lines = list(reader)
+
+    if len(lines) == 0:
+        raise ValueError("CSV file is empty")
+    if lines[0] != EXPECTED_HEADER:
+        raise ValueError("Unexpected first line: got {}".format(lines[0]))
+
+    return build_linked_list(lines[1:], 0)
