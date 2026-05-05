@@ -26,7 +26,7 @@ class Node:
     value: Row
     next: Optional[Node]
 
-# Project functions
+# Functions
 def string_to_float(value: str) -> Optional[float]:
     """
     Purpose: A helper function that converts a CSV string into a float (or None if the value is missing).
