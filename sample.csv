@@ -1,4 +1,4 @@
-country,year,electricity_and_heat_co2_emissions,electricity_and_heat_co2_emissions_per_capita,energy_co2_emissions,energy_co2_emissions_per_capita,total_co2_emissons_excluding_lucf,total_co2_emissions_excluding_lucf_per_capita
+country,year,electricity_and_heat_co2_emissions,electricity_and_heat_co2_emissions_per_capita,energy_co2_emissions,energy_co2_emissions_per_capita,total_co2_emissions_excluding_lucf,total_co2_emissions_excluding_lucf_per_capita
 USA,1990,100.0,1.5,200.0,2.5,300.0,3.5
 USA,2000,120.0,1.7,220.0,2.7,320.0,3.7
 Mexico,1990,50.0,0.8,100.0,1.6,150.0,2.4
@@ -9,3 +9,4 @@ France,1990,70.0,1.1,140.0,1.9,210.0,2.9
 France,2000,75.0,1.15,145.0,1.95,215.0,2.95
 Japan,1990,110.0,1.6,210.0,2.6,310.0,3.6
 Japan,2000,130.0,1.8,230.0,2.8,330.0,3.8
+
